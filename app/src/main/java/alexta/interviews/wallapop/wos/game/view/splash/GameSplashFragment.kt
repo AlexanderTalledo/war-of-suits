@@ -1,4 +1,4 @@
-package alexta.interviews.wallapop.wos.game.splash.view
+package alexta.interviews.wallapop.wos.game.view.splash
 
 import alexta.interviews.wallapop.wos.R
 import alexta.interviews.wallapop.wos.databinding.FragmentGameSplashBinding

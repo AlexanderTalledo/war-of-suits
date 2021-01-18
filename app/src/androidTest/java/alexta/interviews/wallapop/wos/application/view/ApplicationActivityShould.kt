@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,9 +25,7 @@ class ApplicationActivityShould {
         scenario.onActivity { activity ->
             val navController = activity.findNavController(R.id.applicationNavigationHostContainer)
 
-            val graphId = navController.graph.id
-
-            assert(graphId == R.id.applicationNavigationGraph)
+            assertThat(navController.graph.id).isEqualTo(R.id.applicationNavigationGraph)
         }
     }
 
@@ -35,9 +34,7 @@ class ApplicationActivityShould {
         scenario.onActivity { activity ->
             val navController = activity.findNavController(R.id.applicationNavigationHostContainer)
 
-            val startDestinationId = navController.graph.startDestination
-
-            assert(startDestinationId == R.id.splashFragment)
+            assertThat(navController.graph.startDestination).isEqualTo(R.id.applicationNavigationHostContainer)
         }
     }
 
@@ -47,9 +44,7 @@ class ApplicationActivityShould {
         scenario.onActivity { activity ->
             val navController = activity.findNavController(R.id.applicationNavigationHostContainer)
 
-            val currentDestinationId = navController.currentDestination?.id
-
-            assert(currentDestinationId == R.id.splashFragment)
+            assertThat(navController.currentDestination?.id).isEqualTo(R.id.gameSplashFragment)
         }
     }
 
