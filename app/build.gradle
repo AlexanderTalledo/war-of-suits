@@ -51,9 +51,12 @@ dependencies {
     def app_compat_version = '1.2.0'
     implementation "androidx.appcompat:appcompat:$app_compat_version"
 
+    def assertj_version = '3.13.2'
+    androidTestImplementation "org.assertj:assertj-core:$assertj_version"
+
     def barista_version = '3.7.0'
     androidTestImplementation("com.schibsted.spain:barista:$barista_version") {
-        exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
+        exclude group: 'org.jetbrains.kotlin'
     }
 
     def card_view_version = '1.0.0'

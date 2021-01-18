@@ -2,10 +2,15 @@ package alexta.interviews.wallapop.wos.game.splash.view
 
 import alexta.interviews.wallapop.wos.R
 import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.navigation.Navigation
+import androidx.navigation.testing.TestNavHostController
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.schibsted.spain.barista.assertion.BaristaBackgroundAssertions.assertHasBackground
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertTextColorIs
+import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -87,6 +92,21 @@ class GameSplashFragmentShould {
 
         assertDisplayed(viewId, R.string.game_splash_start)
         assertTextColorIs(viewId, R.color.white)
+    }
+
+    @Test
+    fun navigateToGameBoardScreenOnScreenClicked() {
+        val testNavController = TestNavHostController(ApplicationProvider.getApplicationContext())
+            .apply { setGraph(R.navigation.application_navigation_graph) }
+        with(launchFragmentInContainer<GameSplashFragment>()) {
+            onFragment { fragment ->
+                Navigation.setViewNavController(fragment.requireView(), testNavController)
+            }
+        }
+
+        clickOn(R.id.gameSplashScreenContainer)
+
+        assertThat(testNavController.currentDestination?.id).isEqualTo(R.id.gameBoardFragment)
     }
 
 }

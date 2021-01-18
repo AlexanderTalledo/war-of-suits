@@ -1,5 +1,6 @@
 package alexta.interviews.wallapop.wos.game.splash.view
 
+import alexta.interviews.wallapop.wos.R
 import alexta.interviews.wallapop.wos.databinding.FragmentGameSplashBinding
 import alexta.interviews.wallapop.wos.shared.framework.fragments.ViewBindingFragment
 import android.os.Bundle
@@ -21,8 +22,18 @@ class GameSplashFragment : ViewBindingFragment<FragmentGameSplashBinding>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun initObservers() {}
+    override fun initViews() {
+        initGameSplashScreenContainer()
+    }
 
-    override fun initViews() {}
+    private fun initGameSplashScreenContainer() = viewBinding?.run {
+        gameSplashScreenContainer.setOnClickListener { showGameScreen() }
+    }
+
+    private fun showGameScreen() {
+        navigateTo(R.id.actionGameSplashFragmentToGameBoardFragment)
+    }
+
+    override fun initObservers() {}
 
 }

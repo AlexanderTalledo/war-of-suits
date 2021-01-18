@@ -9,6 +9,18 @@
         android:id="@+id/splashFragment"
         android:name="alexta.interviews.wallapop.wos.game.splash.view.GameSplashFragment"
         android:label="Splash"
-        tools:layout="@layout/fragment_game_splash" />
+        tools:layout="@layout/fragment_game_splash">
+
+        <action
+            android:id="@+id/actionGameSplashFragmentToGameBoardFragment"
+            app:destination="@id/gameBoardFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameBoardFragment"
+        android:name="alexta.interviews.wallapop.wos.game.view.board.GameBoardFragment"
+        android:label="GameBoard"
+        tools:layout="@layout/fragment_game_board" />
 
 </navigation>

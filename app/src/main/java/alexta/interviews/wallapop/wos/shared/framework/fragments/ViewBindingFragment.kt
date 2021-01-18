@@ -1,13 +1,12 @@
 package alexta.interviews.wallapop.wos.shared.framework.fragments
 
-import alexta.interviews.wallapop.wos.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 
 abstract class ViewBindingFragment<VB : ViewBinding> : Fragment() {
@@ -39,15 +38,10 @@ abstract class ViewBindingFragment<VB : ViewBinding> : Fragment() {
         viewBinding = null
     }
 
-    private val navHostFragment by lazy {
-        activity?.supportFragmentManager
-            ?.findFragmentById(R.id.applicationNavigationHostContainer) as NavHostFragment
-    }
-
-    private val navController by lazy { navHostFragment.navController }
+    private val navController by lazy { view?.findNavController() }
 
     internal fun navigateTo(@IdRes destination: Int) {
-        navController.navigate(destination)
+        navController?.navigate(destination)
     }
 
 }
