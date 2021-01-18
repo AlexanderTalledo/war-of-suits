@@ -1,4 +1,4 @@
-package alexta.interviews.wallapop.wos.game.view.splash
+package alexta.interviews.wallapop.wos.game.splash.view
 
 import alexta.interviews.wallapop.wos.R
 import androidx.fragment.app.testing.launchFragmentInContainer
