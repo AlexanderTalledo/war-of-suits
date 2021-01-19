@@ -28,6 +28,13 @@ class GameSplashViewModelShould : LifecycleUnitTestCase<GameSplashOperation>() {
     }
 
     @Test
+    fun `notify once about a new game has been created`() {
+        viewModel.createNewGame()
+
+        verify(exactly = 1) { observer.onChanged(any()) }
+    }
+
+    @Test
     fun `notify about a new game has been created`() {
         val operation = slot<GameSplashOperation>()
         every { observer.onChanged(capture(operation)) } answers { operation.captured }
@@ -38,7 +45,7 @@ class GameSplashViewModelShould : LifecycleUnitTestCase<GameSplashOperation>() {
     }
 
     @Test
-    fun `provide game id when a new game has been created`() {
+    fun `provide game id when notifying about a new game has been created`() {
         val id = slot<String>()
         val operation = slot<GameSplashOperation>()
         every { creator.create(capture(id)) } answers { id.captured }
