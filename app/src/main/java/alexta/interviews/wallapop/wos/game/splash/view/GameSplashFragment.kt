@@ -2,13 +2,21 @@ package alexta.interviews.wallapop.wos.game.splash.view
 
 import alexta.interviews.wallapop.wos.R
 import alexta.interviews.wallapop.wos.databinding.FragmentGameSplashBinding
+import alexta.interviews.wallapop.wos.game.splash.viewmodel.GameSplashOperation
+import alexta.interviews.wallapop.wos.game.splash.viewmodel.GameSplashViewModel
 import alexta.interviews.wallapop.wos.shared.framework.fragments.ViewBindingFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class GameSplashFragment : ViewBindingFragment<FragmentGameSplashBinding>() {
+
+    @Inject
+    lateinit var viewModel: GameSplashViewModel
 
     override var viewBinding: FragmentGameSplashBinding? = null
 
@@ -27,13 +35,19 @@ class GameSplashFragment : ViewBindingFragment<FragmentGameSplashBinding>() {
     }
 
     private fun initGameSplashScreenContainer() = viewBinding?.run {
-        gameSplashScreenContainer.setOnClickListener { showGameScreen() }
+        gameSplashScreenContainer.setOnClickListener { viewModel.createNewGame() }
     }
 
-    private fun showGameScreen() {
+    override fun initObservers() {
+        viewModel.operation.observe(this, { operation ->
+            when (operation) {
+                is GameSplashOperation.OnGameCreated -> showGameBoardScreen(operation.gameId)
+            }
+        })
+    }
+
+    private fun showGameBoardScreen(gameId: String) {
         navigateTo(R.id.actionGameSplashFragmentToGameBoardFragment)
     }
-
-    override fun initObservers() {}
 
 }

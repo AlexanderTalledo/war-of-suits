@@ -1,6 +1,8 @@
 package alexta.interviews.wallapop.wos.game.splash.view
 
 import alexta.interviews.wallapop.wos.R
+import alexta.interviews.wallapop.wos.game.di.GameModule
+import alexta.interviews.wallapop.wos.game.splash.viewmodel.GameSplashViewModel
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
@@ -10,12 +12,30 @@ import com.schibsted.spain.barista.assertion.BaristaBackgroundAssertions.assertH
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertTextColorIs
 import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
 
-@RunWith(AndroidJUnit4::class)
+@UninstallModules(GameModule::class)
+@HiltAndroidTest
 class GameSplashFragmentShould {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    @Inject
+    lateinit var viewModel: GameSplashViewModel
+
+    @Before
+    fun setUp() {
+        hiltRule.inject()
+    }
 
     @Test
     fun displayRedContainer() {

@@ -6,5 +6,8 @@ targetCompatibility = JavaVersion.VERSION_1_8.toString()
 dependencies {
     implementation project(':shared')
 
+    testImplementation project(path: ':shared', configuration: 'testOutput')
+    testImplementation project(path: ':shared', configuration: 'sharedTestDependencies')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
