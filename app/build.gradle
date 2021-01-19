@@ -40,11 +40,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
     implementation project(':core')
+    testImplementation project(path: ':core', configuration: 'testOutput')
+
     implementation project(':shared')
+    testImplementation project(path: ':shared', configuration: 'sharedTestDependencies')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 

@@ -4,7 +4,7 @@ import alexta.interviews.wallapop.shared.domain.valueobjects.IdentifierMother
 
 object GameMother {
 
-    internal fun create(
+    fun create(
         id: String = IdentifierMother.random()
     ) = Game(
         GameId(id)
