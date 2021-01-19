@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach
 import kotlin.reflect.KClass
 
 private const val SAVE_TIMES_DEFAULT = 1
+private const val FIND_TIMES_DEFAULT = 1
 
 abstract class GameModuleUnitTestCase {
 
@@ -32,6 +33,10 @@ abstract class GameModuleUnitTestCase {
 
     internal fun shouldHaveCreated(game: Game, expectedTimes: Int = SAVE_TIMES_DEFAULT) {
         verify(exactly = expectedTimes) { repository.save(game) }
+    }
+
+    internal fun shouldHaveFound(id: GameId, expectedTimes: Int = FIND_TIMES_DEFAULT) {
+        verify(exactly = expectedTimes) { repository.find(id) }
     }
 
 }
