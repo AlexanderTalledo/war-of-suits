@@ -1,6 +1,5 @@
 package alexta.interviews.wallapop.wos.game.view.splash
 
-import alexta.interviews.wallapop.wos.R
 import alexta.interviews.wallapop.wos.databinding.FragmentGameSplashBinding
 import alexta.interviews.wallapop.wos.game.viewmodel.splash.GameSplashOperation
 import alexta.interviews.wallapop.wos.game.viewmodel.splash.GameSplashViewModel
@@ -47,7 +46,7 @@ class GameSplashFragment : ViewBindingFragment<FragmentGameSplashBinding>() {
     }
 
     private fun showGameBoardScreen(gameId: String) {
-        navigateTo(R.id.actionGameSplashFragmentToGameBoardFragment)
+        navigateTo(GameSplashFragmentDirections.actionGameSplashFragmentToGameBoardFragment(gameId))
     }
 
 }

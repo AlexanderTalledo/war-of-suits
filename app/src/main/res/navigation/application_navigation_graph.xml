@@ -13,7 +13,14 @@
 
         <action
             android:id="@+id/actionGameSplashFragmentToGameBoardFragment"
-            app:destination="@id/gameBoardFragment" />
+            app:destination="@id/gameBoardFragment">
+
+            <argument
+                android:name="gameId"
+                android:defaultValue=""
+                app:argType="string" />
+
+        </action>
 
     </fragment>
 
@@ -21,6 +28,13 @@
         android:id="@+id/gameBoardFragment"
         android:name="alexta.interviews.wallapop.wos.game.view.board.GameBoardFragment"
         android:label="GameBoard"
-        tools:layout="@layout/fragment_game_board" />
+        tools:layout="@layout/fragment_game_board">
+
+        <argument
+            android:name="gameId"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>
