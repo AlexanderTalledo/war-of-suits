@@ -4,6 +4,7 @@ import alexta.interviews.wallapop.wos.databinding.FragmentGameSplashBinding
 import alexta.interviews.wallapop.wos.game.viewmodel.splash.GameSplashOperation
 import alexta.interviews.wallapop.wos.game.viewmodel.splash.GameSplashViewModel
 import alexta.interviews.wallapop.wos.shared.framework.fragments.ViewBindingFragment
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,10 +32,20 @@ class GameSplashFragment : ViewBindingFragment<FragmentGameSplashBinding>() {
 
     override fun initViews() {
         initGameSplashScreenContainer()
+        initGameSplashStartTextView()
     }
 
     private fun initGameSplashScreenContainer() = viewBinding?.run {
         gameSplashScreenContainer.setOnClickListener { viewModel.createNewGame() }
+    }
+
+    private fun initGameSplashStartTextView() = viewBinding?.run {
+        with(ObjectAnimator.ofFloat(gameSplashStartTextView, "alpha", .2f, 1f)) {
+            duration = 1000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+            start()
+        }
     }
 
     override fun initObservers() {
