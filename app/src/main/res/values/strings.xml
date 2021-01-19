@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">War of Suits</string>
+    <string name="app_name" translatable="false">War of suits</string>
+
+    <string name="game_splash_acronym">WoS</string>
+    <string name="game_splash_name">War of suits</string>
+    <string name="game_splash_start">Touch the screen to play</string>
+
 </resources>
