@@ -23,7 +23,7 @@ class GameCreatorShould : GameModuleUnitTestCase() {
         ]
     )
     internal fun `throw invalid value error when given game id is invalid`(id: String) {
-        val error = catchThrowable { creator(id) }
+        val error = catchThrowable { creator.create(id) }
 
         shouldHaveFailed(
             error,
@@ -36,7 +36,7 @@ class GameCreatorShould : GameModuleUnitTestCase() {
     internal fun `create a new game once`() {
         val game = GameMother.create()
 
-        creator(game.id.value)
+        creator.create(game.id.value)
 
         shouldHaveCreated(game)
     }

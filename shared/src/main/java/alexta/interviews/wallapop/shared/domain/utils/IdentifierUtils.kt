@@ -4,9 +4,9 @@ import java.util.*
 
 object IdentifierUtils {
 
-    internal fun create() = UUID.randomUUID().toString()
+    fun generate() = UUID.randomUUID().toString()
 
-    internal fun isValid(uuid: String) = try {
+    fun isValid(uuid: String) = try {
         UUID.fromString(uuid)
         true
     } catch (throwable: Throwable) {

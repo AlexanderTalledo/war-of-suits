@@ -1,4 +1,4 @@
-package alexta.interviews.wallapop.wos.game.splash.viewmodel
+package alexta.interviews.wallapop.wos.game.viewmodel.splash
 
 import alexta.interviews.wallapop.wos.shared.framework.lifecycle.ViewModelOperation
 

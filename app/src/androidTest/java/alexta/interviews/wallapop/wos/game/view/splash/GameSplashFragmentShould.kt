@@ -1,13 +1,12 @@
-package alexta.interviews.wallapop.wos.game.splash.view
+package alexta.interviews.wallapop.wos.game.view.splash
 
 import alexta.interviews.wallapop.wos.R
 import alexta.interviews.wallapop.wos.game.di.GameModule
-import alexta.interviews.wallapop.wos.game.splash.viewmodel.GameSplashViewModel
+import alexta.interviews.wallapop.wos.game.viewmodel.splash.GameSplashViewModel
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.schibsted.spain.barista.assertion.BaristaBackgroundAssertions.assertHasBackground
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertTextColorIs
@@ -19,7 +18,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import javax.inject.Inject
 
 @UninstallModules(GameModule::class)

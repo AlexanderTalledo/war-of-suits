@@ -6,15 +6,15 @@ import alexta.interviews.wallapop.core.game.infrastructure.GameRepository
 
 class GameCreator(private val repository: GameRepository) {
 
-    operator fun invoke(id: String) {
-        val game = create(id)
-        save(game)
+    fun create(id: String) {
+        val game = createNewGame(id)
+        saveGame(game)
     }
 
-    private fun create(id: String) = Game(
+    private fun createNewGame(id: String) = Game(
         GameId(id)
     )
 
-    private fun save(game: Game) = repository.save(game)
+    private fun saveGame(game: Game) = repository.save(game)
 
 }
