@@ -2,6 +2,7 @@ package alexta.interviews.wallapop.wos.game.viewmodel.board
 
 import alexta.interviews.wallapop.core.game.application.find.GameFinder
 import alexta.interviews.wallapop.core.game.domain.Game
+import alexta.interviews.wallapop.core.game.domain.GameId
 import alexta.interviews.wallapop.core.game.domain.GameRound
 import alexta.interviews.wallapop.wos.shared.framework.lifecycle.OperationViewModel
 import javax.inject.Inject
@@ -38,7 +39,7 @@ class GameBoardViewModel @Inject constructor(
     internal fun playNextRound() {
         game?.run {
             val round = this.nextRound()
-            if (round == null) onGameEnded()
+            if (round == null) onGameEnded(id)
             else onGameRoundPlayed(round)
         }
     }
@@ -47,8 +48,6 @@ class GameBoardViewModel @Inject constructor(
         update(GameBoardOperation.OnGameRoundPlayed(round))
     }
 
-    private fun onGameEnded() {
-        TODO("Not yet implemented")
-    }
+    private fun onGameEnded(id: GameId) = update(GameBoardOperation.OnGameEnded(id))
 
 }

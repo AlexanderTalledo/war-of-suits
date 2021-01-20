@@ -1,5 +1,6 @@
 package alexta.interviews.wallapop.wos.game.view.board
 
+import alexta.interviews.wallapop.core.game.domain.GameId
 import alexta.interviews.wallapop.core.game.domain.GameRound
 import alexta.interviews.wallapop.wos.databinding.FragmentGameBoardBinding
 import alexta.interviews.wallapop.wos.game.viewmodel.board.GameBoardOperation
@@ -61,6 +62,7 @@ class GameBoardFragment : ViewBindingFragment<FragmentGameBoardBinding>() {
                 is GameBoardOperation.OnGameStarted -> setGameBoard(operation.round)
                 is GameBoardOperation.OnGameReset -> setGameBoard(operation.round)
                 is GameBoardOperation.OnGameRoundPlayed -> setGameBoard(operation.round)
+                is GameBoardOperation.OnGameEnded -> showGameSummaryScreen(operation.id)
             }
         })
     }
@@ -90,12 +92,16 @@ class GameBoardFragment : ViewBindingFragment<FragmentGameBoardBinding>() {
     }
 
     private fun setGamePriorities(priorities: GameBoardPriorityView) = viewBinding?.run {
-        with(priorities){
+        with(priorities) {
             gameBoardPriorityOne.setImageResource(roundPriorities[0])
             gameBoardPriorityTwo.setImageResource(roundPriorities[1])
             gameBoardPriorityThree.setImageResource(roundPriorities[2])
             gameBoardPriorityFour.setImageResource(roundPriorities[3])
         }
+    }
+
+    private fun showGameSummaryScreen(id: GameId) {
+        navigateTo(GameBoardFragmentDirections.actionGameBoardFragmentToGameSummaryFragment(id.value))
     }
 
 }
