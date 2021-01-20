@@ -1,11 +1,11 @@
 package alexta.interviews.wallapop.wos.game.view.board
 
+import alexta.interviews.wallapop.core.game.domain.GameRound
 import alexta.interviews.wallapop.wos.databinding.FragmentGameBoardBinding
 import alexta.interviews.wallapop.wos.game.viewmodel.board.GameBoardOperation
 import alexta.interviews.wallapop.wos.game.viewmodel.board.GameBoardViewModel
 import alexta.interviews.wallapop.wos.shared.framework.fragments.ViewBindingFragment
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,13 +49,32 @@ class GameBoardFragment : ViewBindingFragment<FragmentGameBoardBinding>() {
     override fun initObservers() {
         viewModel.operation.observe(this, { operation ->
             when (operation) {
-                is GameBoardOperation.OnGameStarted -> setGameBoard()
+                is GameBoardOperation.OnGameStarted -> setGameBoard(operation.round)
             }
         })
     }
 
-    private fun setGameBoard() {
-        Log.e("AAAAAAAAAAAA", "Game ID: ${args.gameId}")
+    private fun setGameBoard(round: GameRound) = with(round.toGameBoardView()) {
+        setGamePlayerOne(playerOneView)
+        setGamePlayerTwo(playerTwoView)
+    }
+
+    private fun setGamePlayerOne(player: GameBoardPlayerView) = viewBinding?.run {
+        with(player) {
+            gameBoardPlayerOneRoundResult.setText(roundWinner)
+            gameBoardPlayerOneCardRank.setText(cardRank)
+            gameBoardPlayerOneCardSuit.setImageResource(cardSuit)
+            gameBoardPlayerOneScore.text = score
+        }
+    }
+
+    private fun setGamePlayerTwo(player: GameBoardPlayerView) = viewBinding?.run {
+        with(player) {
+            gameBoardPlayerTwoRoundResult.setText(roundWinner)
+            gameBoardPlayerTwoCardRank.setText(cardRank)
+            gameBoardPlayerTwoCardSuit.setImageResource(cardSuit)
+            gameBoardPlayerTwoScore.text = score
+        }
     }
 
 }
