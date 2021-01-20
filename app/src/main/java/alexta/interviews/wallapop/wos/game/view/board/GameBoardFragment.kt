@@ -43,7 +43,12 @@ class GameBoardFragment : ViewBindingFragment<FragmentGameBoardBinding>() {
     }
 
     override fun initViews() {
+        initGameBoardResetGameButton()
         initGameBoardNextRoundButton()
+    }
+
+    private fun initGameBoardResetGameButton() = viewBinding?.run {
+        gameBoardResetGameButton.setOnClickListener { viewModel.resetGame() }
     }
 
     private fun initGameBoardNextRoundButton() = viewBinding?.run {
@@ -54,6 +59,7 @@ class GameBoardFragment : ViewBindingFragment<FragmentGameBoardBinding>() {
         viewModel.operation.observe(this, { operation ->
             when (operation) {
                 is GameBoardOperation.OnGameStarted -> setGameBoard(operation.round)
+                is GameBoardOperation.OnGameReset -> setGameBoard(operation.round)
                 is GameBoardOperation.OnGameRoundPlayed -> setGameBoard(operation.round)
             }
         })

@@ -25,6 +25,16 @@ class GameBoardViewModel @Inject constructor(
 
     private fun onGameStarted(round: GameRound) = update(GameBoardOperation.OnGameStarted(round))
 
+    internal fun resetGame() {
+        game?.run {
+            this.restart()
+            val round = this.nextRound()
+            onGameReset(round!!)
+        }
+    }
+
+    private fun onGameReset(round: GameRound) = update(GameBoardOperation.OnGameReset(round))
+
     internal fun playNextRound() {
         game?.run {
             val round = this.nextRound()
