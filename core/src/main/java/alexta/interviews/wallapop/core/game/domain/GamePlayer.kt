@@ -2,7 +2,7 @@ package alexta.interviews.wallapop.core.game.domain
 
 import java.util.*
 
-class GamePlayer(val name: String, val type: GamePlayerType) {
+class GamePlayer(val name: GamePlayerName, val type: GamePlayerType) {
 
     val cardCount: Int
         get() = cardPile.size
@@ -19,7 +19,7 @@ class GamePlayer(val name: String, val type: GamePlayerType) {
 
     internal fun play() = if (cardPile.isNotEmpty()) cardPile.pop() else null
 
-    internal fun discard(cards: Pair<GameCard, GameCard>) = with(cards) {
+    internal fun discard(cards: Pair<GameCard, GameCard>): Unit = with(cards) {
         discardPile.push(first)
         discardPile.push(second)
     }

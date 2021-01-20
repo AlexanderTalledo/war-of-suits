@@ -17,8 +17,8 @@ class GameCreator(private val repository: GameRepository) {
         GameId(id),
         GameDeck(),
         GameRoundCriteria(),
-        GamePlayer(PLAYER_ONE_NAME, GamePlayerType.PLAYER_ONE),
-        GamePlayer(PLAYER_TWO_NAME, GamePlayerType.PLAYER_TWO)
+        GamePlayer(GamePlayerName(PLAYER_ONE_NAME), GamePlayerType.PLAYER_ONE),
+        GamePlayer(GamePlayerName(PLAYER_TWO_NAME), GamePlayerType.PLAYER_TWO)
     )
 
     private fun saveGame(game: Game) = repository.save(game)
