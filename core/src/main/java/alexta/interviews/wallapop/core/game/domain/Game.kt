@@ -5,13 +5,14 @@ import java.util.*
 class Game(
     val id: GameId,
     private val deck: GameDeck,
-    private val rules: GameRules,
+    private val criteria: GameRoundCriteria,
     private val playerOne: GamePlayer,
     private val playerTwo: GamePlayer
 ) {
 
     fun start() {
         shuffleCards()
+        shuffleCriteria()
         dealCards()
     }
 
@@ -20,6 +21,8 @@ class Game(
     }
 
     private fun shuffleCards() = deck.shuffle()
+
+    private fun shuffleCriteria() = criteria.shuffle()
 
     private fun dealCards() = with(splitDeck()) {
         playerOne.setup(first)
@@ -39,7 +42,7 @@ class Game(
 
     fun nextRound(): GameRound? {
         val cards = nextRoundCards() ?: return null
-        val winner = rules.roundWinner(cards)
+        val winner = criteria.roundWinner(cards)
         updateRoundScore(winner, cards)
         return createRound(winner, cards)
     }
@@ -61,7 +64,8 @@ class Game(
     private fun createRound(winner: GamePlayerType, cards: Pair<GameCard, GameCard>) = GameRound(
         Pair(playerOne, cards.first),
         Pair(playerTwo, cards.second),
-        winner
+        winner,
+        criteria.suitPriorities
     )
 
     override fun equals(other: Any?): Boolean {

@@ -16,7 +16,7 @@ class GameCreator(private val repository: GameRepository) {
     private fun createNewGame(id: String) = Game(
         GameId(id),
         GameDeck(),
-        GameRules(),
+        GameRoundCriteria(),
         GamePlayer(PLAYER_ONE_NAME, GamePlayerType.PLAYER_ONE),
         GamePlayer(PLAYER_TWO_NAME, GamePlayerType.PLAYER_TWO)
     )

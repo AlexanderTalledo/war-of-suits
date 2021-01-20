@@ -68,6 +68,7 @@ class GameBoardFragment : ViewBindingFragment<FragmentGameBoardBinding>() {
     private fun setGameBoard(round: GameRound) = with(round.toGameBoardView()) {
         setGamePlayerOne(playerOneView)
         setGamePlayerTwo(playerTwoView)
+        setGamePriorities(prioritiesView)
     }
 
     private fun setGamePlayerOne(player: GameBoardPlayerView) = viewBinding?.run {
@@ -85,6 +86,15 @@ class GameBoardFragment : ViewBindingFragment<FragmentGameBoardBinding>() {
             gameBoardPlayerTwoCardRank.setText(cardRank)
             gameBoardPlayerTwoCardSuit.setImageResource(cardSuit)
             gameBoardPlayerTwoScore.text = score
+        }
+    }
+
+    private fun setGamePriorities(priorities: GameBoardPriorityView) = viewBinding?.run {
+        with(priorities){
+            gameBoardPriorityOne.setImageResource(roundPriorities[0])
+            gameBoardPriorityTwo.setImageResource(roundPriorities[1])
+            gameBoardPriorityThree.setImageResource(roundPriorities[2])
+            gameBoardPriorityFour.setImageResource(roundPriorities[3])
         }
     }
 
