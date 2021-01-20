@@ -10,8 +10,10 @@ class GameBoardViewModel @Inject constructor(
     private val finder: GameFinder
 ) : OperationViewModel<GameBoardOperation>() {
 
+    private var game: Game? = null
+
     internal fun startGame(gameId: String) {
-        val game = currentGame(gameId)
+        game = currentGame(gameId)
         game?.run {
             this.start()
             val round = this.nextRound()
@@ -22,5 +24,21 @@ class GameBoardViewModel @Inject constructor(
     private fun currentGame(gameId: String): Game? = finder.find(gameId)
 
     private fun onGameStarted(round: GameRound) = update(GameBoardOperation.OnGameStarted(round))
+
+    internal fun playNextRound() {
+        game?.run {
+            val round = this.nextRound()
+            if (round == null) onGameEnded()
+            else onGameRoundPlayed(round)
+        }
+    }
+
+    private fun onGameRoundPlayed(round: GameRound) {
+        update(GameBoardOperation.OnGameRoundPlayed(round))
+    }
+
+    private fun onGameEnded() {
+        TODO("Not yet implemented")
+    }
 
 }

@@ -7,4 +7,6 @@ sealed class GameBoardOperation : ViewModelOperation {
 
     class OnGameStarted(val round: GameRound) : GameBoardOperation()
 
+    class OnGameRoundPlayed(val round: GameRound) : GameBoardOperation()
+
 }
