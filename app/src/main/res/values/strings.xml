@@ -5,4 +5,21 @@
     <string name="game_splash_name">War of suits</string>
     <string name="game_splash_start">Touch the screen to play</string>
 
+    <string name="game_board_round_winner">ROUND WINNER</string>
+    <string name="game_board_round_loser">ROUND LOSER</string>
+    <string name="game_board_card_rank_two">2</string>
+    <string name="game_board_card_rank_three">3</string>
+    <string name="game_board_card_rank_four">4</string>
+    <string name="game_board_card_rank_five">5</string>
+    <string name="game_board_card_rank_six">6</string>
+    <string name="game_board_card_rank_seven">7</string>
+    <string name="game_board_card_rank_eight">8</string>
+    <string name="game_board_card_rank_nine">9</string>
+    <string name="game_board_card_rank_ten">X</string>
+    <string name="game_board_card_rank_jack">J</string>
+    <string name="game_board_card_rank_queen">Q</string>
+    <string name="game_board_card_rank_king">K</string>
+    <string name="game_board_card_rank_ace">A</string>
+    <string name="game_board_score">%1$s score: %2$d</string>
+
 </resources>

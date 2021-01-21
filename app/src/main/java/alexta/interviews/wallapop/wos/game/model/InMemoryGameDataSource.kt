@@ -2,6 +2,7 @@ package alexta.interviews.wallapop.wos.game.model
 
 import alexta.interviews.wallapop.core.game.domain.Game
 import alexta.interviews.wallapop.core.game.domain.GameDataSource
+import alexta.interviews.wallapop.core.game.domain.GameId
 
 class InMemoryGameDataSource : GameDataSource {
 
@@ -9,6 +10,10 @@ class InMemoryGameDataSource : GameDataSource {
 
     override fun save(game: Game) = with(game) {
         games[id.value] = this
+    }
+
+    override fun find(id: GameId) = with(id) {
+        games[value]
     }
 
 }

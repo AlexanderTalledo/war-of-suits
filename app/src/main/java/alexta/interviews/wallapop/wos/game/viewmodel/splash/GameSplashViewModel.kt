@@ -19,8 +19,6 @@ class GameSplashViewModel @Inject constructor(
 
     private fun createGame(id: String) = creator.create(id)
 
-    private fun onNewGameCreated(id: String) {
-        update(GameSplashOperation.OnGameCreated(id))
-    }
+    private fun onNewGameCreated(id: String) = update(GameSplashOperation.OnGameCreated(id))
 
 }

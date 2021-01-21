@@ -1,13 +1,13 @@
 package alexta.interviews.wallapop.core.game.domain
 
-import alexta.interviews.wallapop.shared.domain.valueobjects.IdentifierMother
-
 object GameMother {
 
     fun create(
-        id: String = IdentifierMother.random()
-    ) = Game(
-        GameId(id)
-    )
+        id: String = GameIdMother.create().value,
+        deck: GameDeck = GameDeckMother.create(),
+        criteria: GameRoundCriteria = GameRoundCriteriaMother.create(),
+        playerOne: GamePlayer = GamePlayerMother.create(type = GamePlayerType.PLAYER_ONE),
+        playerTwo: GamePlayer = GamePlayerMother.create(type = GamePlayerType.PLAYER_TWO)
+    ) = Game(GameId(id), deck, criteria, playerOne, playerTwo)
 
 }

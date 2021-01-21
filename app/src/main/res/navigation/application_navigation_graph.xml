@@ -35,6 +35,30 @@
             android:defaultValue=""
             app:argType="string" />
 
+        <action
+            android:id="@+id/actionGameBoardFragmentToGameSummaryFragment"
+            app:destination="@id/gameSummaryFragment">
+
+            <argument
+                android:name="gameId"
+                android:defaultValue=""
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameSummaryFragment"
+        android:name="alexta.interviews.wallapop.wos.game.view.summary.GameSummaryFragment"
+        android:label="GameSummary"
+        tools:layout="@layout/fragment_game_summary">
+
+        <argument
+            android:name="gameId"
+            android:defaultValue=""
+            app:argType="string" />
+
     </fragment>
 
 </navigation>
