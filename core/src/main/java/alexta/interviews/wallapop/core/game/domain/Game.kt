@@ -10,6 +10,8 @@ class Game(
     private val playerTwo: GamePlayer
 ) {
 
+    private val rounds = mutableListOf<GameRound>()
+
     fun start() {
         shuffleCards()
         shuffleCriteria()
@@ -44,7 +46,9 @@ class Game(
         val cards = nextRoundCards() ?: return null
         val winner = criteria.roundWinner(cards)
         updateRoundScore(winner, cards)
-        return createRound(winner, cards)
+        val round = createRound(winner, cards)
+        updateRounds(round)
+        return round
     }
 
     private fun nextRoundCards(): Pair<GameCard, GameCard>? {
@@ -60,6 +64,10 @@ class Game(
             GamePlayerType.PLAYER_TWO -> playerTwo.discard(cards)
         }
     }
+
+    private fun updateRounds(round: GameRound) = rounds.add(round)
+
+    fun summary() = GameSummary(rounds)
 
     private fun createRound(winner: GamePlayerType, cards: Pair<GameCard, GameCard>) = GameRound(
         Pair(playerOne, cards.first),
