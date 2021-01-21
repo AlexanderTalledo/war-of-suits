@@ -37,7 +37,9 @@
 
         <action
             android:id="@+id/actionGameBoardFragmentToGameSummaryFragment"
-            app:destination="@id/gameSummaryFragment">
+            app:destination="@id/gameSummaryFragment"
+            app:popUpTo="@id/gameSplashFragment"
+            app:popUpToInclusive="false">
 
             <argument
                 android:name="gameId"
