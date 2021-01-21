@@ -24,8 +24,8 @@ class GameRoundCriteria {
 
     private fun roundWinnerByPriority(cards: Pair<GameCard, GameCard>) = with(cards) {
         for (priority in _suitPriorities) {
-            if (first.suit == priority) GamePlayerType.PLAYER_ONE
-            if (second.suit == priority) GamePlayerType.PLAYER_TWO
+            if (first.suit == priority) return GamePlayerType.PLAYER_ONE
+            if (second.suit == priority) return GamePlayerType.PLAYER_TWO
         }
         GamePlayerType.PLAYER_ONE
     }
