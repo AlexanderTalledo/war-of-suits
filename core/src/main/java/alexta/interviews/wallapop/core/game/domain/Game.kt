@@ -20,6 +20,7 @@ class Game(
 
     fun restart() {
         dealCards()
+        flushRounds()
     }
 
     private fun shuffleCards() = deck.shuffle()
@@ -30,6 +31,8 @@ class Game(
         playerOne.setup(first)
         playerTwo.setup(second)
     }
+
+    private fun flushRounds() = rounds.clear()
 
     private fun splitDeck() = with(deck) {
         val pileOne = Stack<GameCard>()
