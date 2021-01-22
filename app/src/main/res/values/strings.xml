@@ -22,4 +22,7 @@
     <string name="game_board_card_rank_ace">A</string>
     <string name="game_board_score">%1$s score: %2$d</string>
 
+    <string name="game_summary_winner_label">GAME WINNER</string>
+    <string name="game_summary_winner_name_tie">Game tied!</string>
+
 </resources>
