@@ -75,7 +75,12 @@ class GameSummaryFragment : ViewBindingFragment<FragmentGameSummaryBinding>() {
     }
 
     private fun setGameSummary(summary: GameSummary) = with(summary.toGameSummaryView()) {
+        setGameSummaryWinner(winner)
         setGameSummaryRecyclerViewAdapter(items)
+    }
+
+    private fun setGameSummaryWinner(winner: GameSummaryWinnerView) = viewBinding?.run {
+        gameSummaryWinnerName.text = winner.name(requireContext())
     }
 
     private fun setGameSummaryRecyclerViewAdapter(items: List<GameSummaryItemView>) {

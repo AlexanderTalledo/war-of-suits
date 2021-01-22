@@ -70,7 +70,7 @@ class Game(
 
     private fun updateRounds(round: GameRound) = rounds.add(round)
 
-    fun summary() = GameSummary(rounds)
+    fun summary() = GameSummary(playerOne, playerTwo, rounds)
 
     private fun createRound(winner: GamePlayerType, cards: Pair<GameCard, GameCard>) = GameRound(
         GamePlay(
