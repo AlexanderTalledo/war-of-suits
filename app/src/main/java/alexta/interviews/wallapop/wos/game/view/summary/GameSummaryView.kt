@@ -14,7 +14,7 @@ internal fun GameSummary.toGameSummaryView(): GameSummaryView {
 }
 
 private fun GameRound.toGameSummaryItemView() = GameSummaryItemView(
-    GameSummaryItemPlayerView(this.playerOneRound.first, this.playerOneRound.second),
-    GameSummaryItemPlayerView(this.playerTwoRound.first, this.playerTwoRound.second),
+    GameSummaryItemPlayerView(this.playerOneGamePlay),
+    GameSummaryItemPlayerView(this.playerTwoGamePlay),
     winner
 )

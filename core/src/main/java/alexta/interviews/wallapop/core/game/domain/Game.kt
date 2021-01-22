@@ -73,8 +73,19 @@ class Game(
     fun summary() = GameSummary(rounds)
 
     private fun createRound(winner: GamePlayerType, cards: Pair<GameCard, GameCard>) = GameRound(
-        Pair(playerOne, cards.first),
-        Pair(playerTwo, cards.second),
+        GamePlay(
+            playerOne.name,
+            playerOne.type,
+            GamePlayerScore(playerOne.discardCount),
+            cards.first
+        ),
+
+        GamePlay(
+            playerTwo.name,
+            playerTwo.type,
+            GamePlayerScore(playerTwo.discardCount),
+            cards.second
+        ),
         winner,
         criteria.suitPriorities
     )

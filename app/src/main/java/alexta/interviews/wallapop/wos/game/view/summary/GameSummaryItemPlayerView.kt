@@ -1,17 +1,13 @@
 package alexta.interviews.wallapop.wos.game.view.summary
 
-import alexta.interviews.wallapop.core.game.domain.GameCard
 import alexta.interviews.wallapop.core.game.domain.GameCardRank
 import alexta.interviews.wallapop.core.game.domain.GameCardSuit
-import alexta.interviews.wallapop.core.game.domain.GamePlayer
+import alexta.interviews.wallapop.core.game.domain.GamePlay
 import alexta.interviews.wallapop.wos.R
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-class GameSummaryItemPlayerView(
-    private val player: GamePlayer,
-    private val card: GameCard
-) {
+class GameSummaryItemPlayerView(private val gamePlay: GamePlay) {
 
     @StringRes
     internal val cardRank = cardRankText()
@@ -23,7 +19,7 @@ class GameSummaryItemPlayerView(
 
     internal val score = playerScore()
 
-    private fun cardRankText() = when (card.rank) {
+    private fun cardRankText() = when (gamePlay.card.rank) {
         GameCardRank.TWO -> R.string.game_board_card_rank_two
         GameCardRank.THREE -> R.string.game_board_card_rank_three
         GameCardRank.FOUR -> R.string.game_board_card_rank_four
@@ -39,15 +35,15 @@ class GameSummaryItemPlayerView(
         GameCardRank.ACE -> R.string.game_board_card_rank_ace
     }
 
-    private fun cardSuitImage() = when (card.suit) {
+    private fun cardSuitImage() = when (gamePlay.card.suit) {
         GameCardSuit.CLUBS -> R.drawable.ic_suit_clubs
         GameCardSuit.DIAMONDS -> R.drawable.ic_suit_diamonds
         GameCardSuit.HEARTS -> R.drawable.ic_suit_hearts
         GameCardSuit.SPADES -> R.drawable.ic_suit_spades
     }
 
-    private fun playerName() = player.name.value
+    private fun playerName() = gamePlay.name.value
 
-    private fun playerScore() = player.discardCount.toString()
+    private fun playerScore() = gamePlay.score.value.toString()
 
 }

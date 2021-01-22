@@ -1,13 +1,15 @@
 package alexta.interviews.wallapop.wos.game.view.board
 
-import alexta.interviews.wallapop.core.game.domain.*
+import alexta.interviews.wallapop.core.game.domain.GameCardRank
+import alexta.interviews.wallapop.core.game.domain.GameCardSuit
+import alexta.interviews.wallapop.core.game.domain.GamePlay
+import alexta.interviews.wallapop.core.game.domain.GamePlayerType
 import alexta.interviews.wallapop.wos.R
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 class GameBoardPlayerView(
-    private val player: GamePlayer,
-    private val card: GameCard,
+    private val gamePlay: GamePlay,
     private val winner: GamePlayerType
 ) {
     @StringRes
@@ -22,11 +24,11 @@ class GameBoardPlayerView(
     internal val score = scoreText()
 
     private fun roundWinnerText(): Int {
-        return if (player.type == winner) R.string.game_board_round_winner
+        return if (gamePlay.type == winner) R.string.game_board_round_winner
         else R.string.game_board_round_loser
     }
 
-    private fun cardRankText() = when (card.rank) {
+    private fun cardRankText() = when (gamePlay.card.rank) {
         GameCardRank.TWO -> R.string.game_board_card_rank_two
         GameCardRank.THREE -> R.string.game_board_card_rank_three
         GameCardRank.FOUR -> R.string.game_board_card_rank_four
@@ -42,13 +44,13 @@ class GameBoardPlayerView(
         GameCardRank.ACE -> R.string.game_board_card_rank_ace
     }
 
-    private fun cardSuitImage() = when (card.suit) {
+    private fun cardSuitImage() = when (gamePlay.card.suit) {
         GameCardSuit.CLUBS -> R.drawable.ic_suit_clubs
         GameCardSuit.DIAMONDS -> R.drawable.ic_suit_diamonds
         GameCardSuit.HEARTS -> R.drawable.ic_suit_hearts
         GameCardSuit.SPADES -> R.drawable.ic_suit_spades
     }
 
-    private fun scoreText() = "${player.name}'s score: ${player.discardCount}"
+    private fun scoreText() = "${gamePlay.name}'s score: ${gamePlay.score}"
 
 }
