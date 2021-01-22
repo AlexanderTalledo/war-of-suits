@@ -3,12 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/applicationNavigationGraph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/gameSplashFragment">
 
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="alexta.interviews.wallapop.wos.game.splash.view.GameSplashFragment"
+        android:id="@+id/gameSplashFragment"
+        android:name="alexta.interviews.wallapop.wos.game.view.splash.GameSplashFragment"
         android:label="Splash"
-        tools:layout="@layout/fragment_game_splash" />
+        tools:layout="@layout/fragment_game_splash">
+
+        <action
+            android:id="@+id/actionGameSplashFragmentToGameBoardFragment"
+            app:destination="@id/gameBoardFragment">
+
+            <argument
+                android:name="gameId"
+                android:defaultValue=""
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameBoardFragment"
+        android:name="alexta.interviews.wallapop.wos.game.view.board.GameBoardFragment"
+        android:label="GameBoard"
+        tools:layout="@layout/fragment_game_board">
+
+        <argument
+            android:name="gameId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <action
+            android:id="@+id/actionGameBoardFragmentToGameSummaryFragment"
+            app:destination="@id/gameSummaryFragment"
+            app:popUpTo="@id/gameSplashFragment"
+            app:popUpToInclusive="false">
+
+            <argument
+                android:name="gameId"
+                android:defaultValue=""
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameSummaryFragment"
+        android:name="alexta.interviews.wallapop.wos.game.view.summary.GameSummaryFragment"
+        android:label="GameSummary"
+        tools:layout="@layout/fragment_game_summary">
+
+        <argument
+            android:name="gameId"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>

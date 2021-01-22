@@ -3,8 +3,24 @@ apply plugin: 'kotlin'
 sourceCompatibility = JavaVersion.VERSION_1_8.toString()
 targetCompatibility = JavaVersion.VERSION_1_8.toString()
 
+task jarTest(type: Jar) {
+    from sourceSets.test.output
+    classifier = 'test'
+}
+
+configurations {
+    testOutput
+}
+
+artifacts {
+    testOutput jarTest
+}
+
 dependencies {
     implementation project(':shared')
+
+    testImplementation project(path: ':shared', configuration: 'testOutput')
+    testImplementation project(path: ':shared', configuration: 'sharedTestDependencies')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
