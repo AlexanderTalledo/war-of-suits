@@ -9,7 +9,7 @@ data class GameBoardView(
 )
 
 internal fun GameRound.toGameBoardView() = GameBoardView(
-    GameBoardPlayerView(this.playerOneRound.first, this.playerOneRound.second, this.winner),
-    GameBoardPlayerView(this.playerTwoRound.first, this.playerTwoRound.second, this.winner),
+    GameBoardPlayerView(this.playerOneGamePlay, this.winner),
+    GameBoardPlayerView(this.playerTwoGamePlay, this.winner),
     GameBoardPriorityView(this.priorities)
 )

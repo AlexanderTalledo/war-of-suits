@@ -188,8 +188,10 @@ class GameShould {
 
         @Test
         fun `not increment player one's discard pile when player two wins the round`() {
+            val name = GamePlayerNameMother.create()
             val card = GameCardMother.create(GameCardSuit.DIAMONDS, GameCardRank.TWO)
             val discardPair = slot<Pair<GameCard, GameCard>>()
+            every { playerOne.name } returns name
             every { playerOne.play() } returns card
             every { playerTwo.play() } returns card
             every { criteria.roundWinner(any()) } returns GamePlayerType.PLAYER_TWO

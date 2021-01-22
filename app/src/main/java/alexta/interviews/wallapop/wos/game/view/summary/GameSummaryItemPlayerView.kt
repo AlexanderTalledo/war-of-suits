@@ -1,19 +1,13 @@
-package alexta.interviews.wallapop.wos.game.view.board
+package alexta.interviews.wallapop.wos.game.view.summary
 
 import alexta.interviews.wallapop.core.game.domain.GameCardRank
 import alexta.interviews.wallapop.core.game.domain.GameCardSuit
 import alexta.interviews.wallapop.core.game.domain.GamePlay
-import alexta.interviews.wallapop.core.game.domain.GamePlayerType
 import alexta.interviews.wallapop.wos.R
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-class GameBoardPlayerView(
-    private val gamePlay: GamePlay,
-    private val winner: GamePlayerType
-) {
-    @StringRes
-    internal val roundWinner = roundWinnerText()
+class GameSummaryItemPlayerView(private val gamePlay: GamePlay) {
 
     @StringRes
     internal val cardRank = cardRankText()
@@ -21,12 +15,9 @@ class GameBoardPlayerView(
     @DrawableRes
     internal val cardSuit = cardSuitImage()
 
-    internal val score = scoreText()
+    internal val name = playerName()
 
-    private fun roundWinnerText(): Int {
-        return if (gamePlay.type == winner) R.string.game_board_round_winner
-        else R.string.game_board_round_loser
-    }
+    internal val score = playerScore()
 
     private fun cardRankText() = when (gamePlay.card.rank) {
         GameCardRank.TWO -> R.string.game_board_card_rank_two
@@ -51,6 +42,8 @@ class GameBoardPlayerView(
         GameCardSuit.SPADES -> R.drawable.ic_suit_spades
     }
 
-    private fun scoreText() = "${gamePlay.name}'s score: ${gamePlay.score}"
+    private fun playerName() = gamePlay.name.value
+
+    private fun playerScore() = gamePlay.score.value.toString()
 
 }

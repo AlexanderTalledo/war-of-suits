@@ -10,6 +10,8 @@ class Game(
     private val playerTwo: GamePlayer
 ) {
 
+    private val rounds = mutableListOf<GameRound>()
+
     fun start() {
         shuffleCards()
         shuffleCriteria()
@@ -18,6 +20,7 @@ class Game(
 
     fun restart() {
         dealCards()
+        flushRounds()
     }
 
     private fun shuffleCards() = deck.shuffle()
@@ -28,6 +31,8 @@ class Game(
         playerOne.setup(first)
         playerTwo.setup(second)
     }
+
+    private fun flushRounds() = rounds.clear()
 
     private fun splitDeck() = with(deck) {
         val pileOne = Stack<GameCard>()
@@ -44,7 +49,9 @@ class Game(
         val cards = nextRoundCards() ?: return null
         val winner = criteria.roundWinner(cards)
         updateRoundScore(winner, cards)
-        return createRound(winner, cards)
+        val round = createRound(winner, cards)
+        updateRounds(round)
+        return round
     }
 
     private fun nextRoundCards(): Pair<GameCard, GameCard>? {
@@ -61,9 +68,24 @@ class Game(
         }
     }
 
+    private fun updateRounds(round: GameRound) = rounds.add(round)
+
+    fun summary() = GameSummary(playerOne, playerTwo, rounds)
+
     private fun createRound(winner: GamePlayerType, cards: Pair<GameCard, GameCard>) = GameRound(
-        Pair(playerOne, cards.first),
-        Pair(playerTwo, cards.second),
+        GamePlay(
+            playerOne.name,
+            playerOne.type,
+            GamePlayerScore(playerOne.discardCount),
+            cards.first
+        ),
+
+        GamePlay(
+            playerTwo.name,
+            playerTwo.type,
+            GamePlayerScore(playerTwo.discardCount),
+            cards.second
+        ),
         winner,
         criteria.suitPriorities
     )
