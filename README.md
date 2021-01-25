@@ -6,7 +6,7 @@ This is an Android implementation of "War of suits" card game tech test.
 Clone this repository and install containing `wos.apk`
 ```bash
 git clone git@github.com:AlexanderTalledo/wos.git
-cd wos/
+cd war-of-suits/
 adb install -r wos.apk
 ```
 ## Good parts
